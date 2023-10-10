@@ -34,3 +34,15 @@ variable "private_subnet_cidr_2b" {
     description = "CIDR block for private subnet running in az-2b"
   
 }
+
+variable "amazon-ami" {
+    default = "ami-036f5574583e16426"
+}
+
+variable "ubuntu-ami" {
+    default = "ami-024e6efaf93d85776"
+}
+
+variable "centos-ami" {
+    default = "ami-011d59a275b482a49"
+}
