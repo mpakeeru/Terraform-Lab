@@ -46,3 +46,7 @@ variable "ubuntu-ami" {
 variable "centos-ami" {
     default = "ami-011d59a275b482a49"
 }
+variable "launch-template-ami" {
+    default = "ami-04e496aabb4626aa7"
+  
+}
