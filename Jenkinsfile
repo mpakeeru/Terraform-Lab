@@ -13,7 +13,7 @@ pipeline {
         stage('Terraform Init'){
             steps{
                 withAWS(credentials: 'Jenkins-AWS') {
-                    sh 'terraform init'
+                    sh 'terraform -chdir=./dev/compute/applications/simplewebapp/ init'
                 }
             }
         }
