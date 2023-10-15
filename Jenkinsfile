@@ -20,7 +20,7 @@ pipeline {
         stage('Terraform Apply'){
             steps{
                 withAWS(credentials: 'Jenkins-AWS') {
-                    sh 'terraform -chdir='dev/compute/applications/simplewebapp/ apply --auto-approve'
+                    sh 'terraform -chdir='./dev/compute/applications/simplewebapp/ apply --auto-approve'
                 }
             }
         }
