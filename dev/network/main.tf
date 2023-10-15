@@ -1,6 +1,6 @@
 provider "aws" {
     region = var.aws_region
-    profile = "myaws"
+    #profile = "myaws"
 }
 
 # Configure the backend to backup the tf state file
@@ -11,7 +11,7 @@ terraform {
     region = "us-east-2"
     dynamodb_table = "terraform-locks"
     encrypt = true
-    profile = "myaws"
+    #profile = "myaws"
   }
 
 }
