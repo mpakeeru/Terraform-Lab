@@ -26,10 +26,12 @@ pipeline {
         }
         stage('create aws-ansible-inventory'){
             steps {
+                withAWS(credentials: 'Jenkins-AWS') {
                 sh '''
                 echo $(terraform -chdir=./dev/compute/applications/simplewebapp/ output simplewebapp-appserver-public-ip)
                 echo $(terraform -chdir=./dev/compute/applications/simplewebapp/ output -json simplewebapp-appserver-public-ip) | awk -F'"' '{print $2}' > aws_hosts
                 '''
+                }
             }
         }
           stage('Accept Terraform Destroy?'){
