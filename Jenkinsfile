@@ -37,6 +37,12 @@ pipeline {
                 }
             }
         }
+        stage('Add authorized keys'){
+            steps{
+                git 'https://github.com/mpakeeru/ansible-play.git'
+                ansiblePlaybook installation: 'Ansible', inventory: 'aws_hosts', playbook: 'update-hosts-entries.yml', vaultCredentialsId: 'mamathe-aws-key'
+            }
+        }
           stage('Accept Terraform Destroy?'){
              input {
                 message "Do you want to delete this infrastructure?"
