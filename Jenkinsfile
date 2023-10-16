@@ -40,7 +40,9 @@ pipeline {
         stage('Add authorized keys'){
             steps{
                 git 'https://github.com/mpakeeru/ansible-play.git'
-                ansiblePlaybook installation: 'Ansible', inventory: 'aws_hosts', playbook: 'update-hosts-entries.yml', vaultCredentialsId: 'mamathe-aws-key'
+                sh '''
+                ansible-playbook add-key.yml -i ansible_hosts --key-file ~/.ssh/private/mamatha-aws-keypair.pem -e "~/.ssh/id_rsa.pub"
+                '''
             }
         }
           stage('Accept Terraform Destroy?'){
