@@ -39,11 +39,13 @@ pipeline {
         }
         stage('wait EC2') {
             steps {
+                withAWS(credentials: 'Jenkins-AWS') {
                 sh '''
                 cd ./dev/compute/applications/simplewebapp
                  aws ec2 wait instance-status-ok --region us-east-2 --instance-ids $(terraform output -json ec2_id_test) | awk -F'"' '{print $2}'
                  '''
             }
+        }
         }
  
     }
