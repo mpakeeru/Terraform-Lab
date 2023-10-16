@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools
+    {
+        maven "Maven"
+    }
     environment {
         TF_IN_AUTOMATION = 'true'
         
