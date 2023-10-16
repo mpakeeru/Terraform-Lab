@@ -37,21 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('Add authorized keys'){
-            steps{
-                git 'https://github.com/mpakeeru/ansible-play.git'
-                ansiblePlaybook credentialsId: 'ec2-user-ubuntu', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'aws_hosts', playbook: 'update-hosts-entries.yml'
-            }
-        }
-          stage('Accept Terraform Destroy?'){
-             input {
-                message "Do you want to delete this infrastructure?"
-                ok "Apply Plan"
-            }
-            steps {
-                echo "Destroy Accepted"
-            }
-            
+ 
         }
          stage('Terraform Destroy'){
         
