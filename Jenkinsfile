@@ -29,7 +29,7 @@ pipeline {
                 withAWS(credentials: 'Jenkins-AWS') {
                 sh '''
                 echo '[hosts_to_add_key]' >> aws_hosts
-                echo $(terraform -chdir=./dev/compute/applications/simplewebapp/ output -json simplewebapp-appserver-public-ip) | awk -F'"' '{print $2}," ansible_user=ubuntu"'>> aws_hosts
+                echo $(terraform -chdir=./dev/compute/applications/simplewebapp/ output -json simplewebapp-appserver-public-ip) | awk -F'"' '{print $2," ansible_user=ubuntu"}'>> aws_hosts
                 '''
                 }
             }
