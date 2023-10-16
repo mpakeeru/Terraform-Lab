@@ -40,7 +40,7 @@ pipeline {
         stage('Add authorized keys'){
             steps{
                 git 'https://github.com/mpakeeru/ansible-play.git'
-                ansiblePlaybook credentialsId: 'ec2-user-ubuntu', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'aws_hosts', playbook: 'add-keys.yml'
+                ansiblePlaybook credentialsId: 'ec2-user-ubuntu', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'aws_hosts', playbook: 'add-key.yml'
             }
         }
           stage('Accept Terraform Destroy?'){
