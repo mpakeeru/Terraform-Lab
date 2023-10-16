@@ -29,6 +29,9 @@ pipeline {
                 message "Do you want to delete this infrastructure?"
                 ok "Apply Plan"
             }
+            steps {
+                echo "Destroy Accepted"
+            }
             steps{
                 withAWS(credentials: 'Jenkins-AWS') {
                     sh 'terraform -chdir=./dev/compute/applications/simplewebapp/ destroy --auto-approve'
