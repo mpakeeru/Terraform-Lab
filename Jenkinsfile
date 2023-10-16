@@ -18,6 +18,10 @@ pipeline {
             }
         }
         stage('Terraform Apply'){
+            input {
+                message "Do you want to apply this Plan?"
+                ok "Apply Plan"
+            }
             steps{
                 withAWS(credentials: 'Jenkins-AWS') {
                     sh 'terraform -chdir=./dev/compute/applications/simplewebapp/ apply --auto-approve'
@@ -25,6 +29,10 @@ pipeline {
             }
         }
           stage('Terraform Destroy'){
+             input {
+                message "Do you want to delete this infrastructure?"
+                ok "Apply Plan"
+            }
             steps{
                 withAWS(credentials: 'Jenkins-AWS') {
                     sh 'terraform -chdir=./dev/compute/applications/simplewebapp/ destroy --auto-approve'
