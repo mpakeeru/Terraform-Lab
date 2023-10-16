@@ -24,7 +24,14 @@ pipeline {
                 }
             }
         }
-          stage('Terraform Destroy'){
+        stage('create aws-ansible-inventory'){
+            steps {
+                sh '''
+                echo $(terraform output -json ec2_public_ip) | awk -F'"' '{print $2}' > aws_hosts
+                '''
+            }
+        }
+          stage('Accept Terraform Destroy?'){
              input {
                 message "Do you want to delete this infrastructure?"
                 ok "Apply Plan"
@@ -32,13 +39,16 @@ pipeline {
             steps {
                 echo "Destroy Accepted"
             }
+            
+        }
+         stage('Terraform Destroy'){
+        
             steps{
                 withAWS(credentials: 'Jenkins-AWS') {
                     sh 'terraform -chdir=./dev/compute/applications/simplewebapp/ destroy --auto-approve'
                 }
             }
         }
-
 
     }
     
