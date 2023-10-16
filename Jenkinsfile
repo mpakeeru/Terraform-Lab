@@ -41,7 +41,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'Jenkins-AWS') {
                 sh '''
-                 aws ec2 wait instance-status-ok --region us-east-2 --instance-ids $(terraform -chdir=./dev/compute/applications/simplewebapp/ output -json ec2_id_test) | awk -F'"' '{print $2}'
+                 aws ec2 wait instance-status-ok --region us-east-2 --instance-ids $(terraform -chdir=./dev/compute/applications/simplewebapp/ output -json simplewebapp-appserver-public-ip) | awk -F'"' '{print $2}'
                  '''
             }
         }
