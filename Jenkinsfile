@@ -41,7 +41,7 @@ pipeline {
             steps{
                 git 'https://github.com/mpakeeru/ansible-play.git'
                 sh '''
-                ansible-playbook add-key.yml -i ansible_hosts --key-file ~/.ssh/private/mamatha-aws-keypair.pem -e "~/.ssh/id_rsa.pub"
+                ansible-playbook add-key.yml -i aws_hosts --key-file ~/.ssh/private/mamatha-aws-keypair.pem -e "~/.ssh/id_rsa.pub"
                 '''
             }
         }
