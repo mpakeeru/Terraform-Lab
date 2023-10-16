@@ -27,8 +27,8 @@ pipeline {
         stage('create aws-ansible-inventory'){
             steps {
                 sh '''
-                echo $(terraform output simplewebapp-appserver-public-ip)
-                echo $(terraform output -json simplewebapp-appserver-public-ip) | awk -F'"' '{print $2}' > aws_hosts
+                echo $(terraform -chdir=./dev/compute/applications/simplewebapp/ output simplewebapp-appserver-public-ip)
+                echo $(terraform -chdir=./dev/compute/applications/simplewebapp/ output -json simplewebapp-appserver-public-ip) | awk -F'"' '{print $2}' > aws_hosts
                 '''
             }
         }
