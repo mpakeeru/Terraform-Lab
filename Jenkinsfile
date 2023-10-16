@@ -24,6 +24,14 @@ pipeline {
                 }
             }
         }
+          stage('Terraform Destroy'){
+            steps{
+                withAWS(credentials: 'Jenkins-AWS') {
+                    sh 'terraform -chdir=./dev/compute/applications/simplewebapp/ destroy --auto-approve'
+                }
+            }
+        }
+
 
     }
     
