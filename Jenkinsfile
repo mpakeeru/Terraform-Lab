@@ -18,10 +18,6 @@ pipeline {
             }
         }
         stage('Terraform Apply'){
-            input {
-                message "Do you want to apply this Plan?"
-                ok "Apply Plan"
-            }
             steps{
                 withAWS(credentials: 'Jenkins-AWS') {
                     sh 'terraform -chdir=./dev/compute/applications/simplewebapp/ apply --auto-approve'
