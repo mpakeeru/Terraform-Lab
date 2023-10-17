@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools
     {
-       mymaven "Maven"
+       maven "mymaven"
     }
     environment {
         TF_IN_AUTOMATION = 'true'
