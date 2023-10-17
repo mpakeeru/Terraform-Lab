@@ -62,6 +62,12 @@ pipeline {
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
+        stage('Deploy') {
+            steps{
+                git 'https://github.com/mpakeeru/ansible-play.git'
+                ansiblePlaybook credentialsId: 'mamatha-aws-ubuntu', installation: 'Ansible', inventory: 'aws_hosts', playbook: 'tomcat-war-deployment.yml'
+            }
+        }
     }
  
     
