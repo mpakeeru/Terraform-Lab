@@ -1,0 +1,11 @@
+[vprofile-appservers]
+3.139.233.166
+
+[vprofile-memecache]
+10.0.3.254
+
+[vprofile-dbservers]
+10.0.3.214
+
+[vprofile-mqservers]
+10.0.3.15

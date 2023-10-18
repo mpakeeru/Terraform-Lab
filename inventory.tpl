@@ -4,7 +4,7 @@ ${ip}
 %{ endfor ~}
 
 [vprofile-memecache]
-%{ for ip in memecache_servers ~}
+%{ for ip in memcache_servers ~}
 ${ip}
 %{ endfor ~}
 
